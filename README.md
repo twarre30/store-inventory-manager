@@ -28,5 +28,4 @@ Here are some sample items:
 | Backstage passes to a TAFKAL80ETC concert | 15 | 20 |
 | Conjured Mana Cake | 3 | 6 |
 
-Write a web app that allows you add new items and displays the current state of the inventory. Degradation should be calculated based on the date the item was added. Note that you'll need to parse the name of the item to determine its type. Make sure you include a README, include appropriate styling, and keep a clean commit history.
-
+Write a web app that allows you add new items and displays the current state of the inventory. Degradation should be calculated based on the date the item was added. Note that you'll need to parse the name of the item to determine its type. Make sure you deploy, include a README with your deployed link, include appropriate styling, and keep a clean commit history.

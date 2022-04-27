@@ -1,0 +1,53 @@
+body {
+  background-image: url("free-antique-background-hd-1.jpg")
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+  }
+
+table {
+  width: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  text-align: center;
+  font-size: 25px;
+}
+
+td {
+  padding: 10px;
+  font-size: 20px;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: hsl(0, 0%, 75%);
+}
+
+.form {
+  margin-top: 2px;
+  text-align: right;
+  padding: 5px;;
+}
+
+
+.form button{
+  margin-top: 2px;
+  font-size: 20px;
+  display:block;
+  padding:10px;
+  margin-left: auto;
+  margin-right: auto;
+  border:2px solid hsl(212, 85%, 20%);
+  border-radius: 25px;
+  box-sizing: border-box;
+  text-decoration:none;
+  color:hsl(0, 0%, 100%);
+  background-color: hsl(212, 85%, 63%);
+  text-shadow: 25px 	hsl(0, 0%, 0%);
+  text-align:center;
+}

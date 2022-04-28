@@ -1,4 +1,4 @@
-import { Item, updateQuality } from './inventory.js';
+import { Item, update_item_quality } from './inventory.js';
 
 const getNewItems = () => [
   new Item('+5 Dexterity Vest', 10, 20),
@@ -17,28 +17,28 @@ const getItemRowHtml = ({ name, sell_in: sellIn, quality }) => {
   return itemHtml;
 };
 
-const renderItemsOnHomepage = (items) => {
+const renderItemsOnHomepage = (item) => {
   const elementItemsList = document.querySelector('#items > tbody');
   elementItemsList.innerHTML = null;
-  items.forEach((element) => {
+  item.forEach((element) => {
     const itemHtml = getItemRowHtml(element);
     elementItemsList.append(itemHtml);
   });
 };
 
-const bindEventListenToUpdateButton = (items) => {
+const bindEventListenToUpdateButton = (item) => {
   const updateButton = document.getElementById('update-items-button');
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
-    updateQuality(items);
-    renderItemsOnHomepage(items);
+    update_item_quality(item);
+    renderItemsOnHomepage(item);
   });
 };
 
 const showItemsOnHomePage = () => {
-  const items = getNewItems();
-  renderItemsOnHomepage(items);
-  bindEventListenToUpdateButton(items);
+  const item = getNewItems();
+  renderItemsOnHomepage(item);
+  bindEventListenToUpdateButton(item);
 };
 
 showItemsOnHomePage();

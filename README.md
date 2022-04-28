@@ -1,3 +1,9 @@
+### Note to Kyle
+
+This is super broken!
+
+
+
 # Deployed Site 
 
  https://twarre30.github.io/store-inventory-manager/

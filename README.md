@@ -1,6 +1,7 @@
 ### Note to Kyle
 
-This is super broken!
+This is super broken! 
+Need to figure out where to go from here.
 
 
 

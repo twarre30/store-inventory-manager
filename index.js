@@ -1,10 +1,10 @@
-const { update } = require("lodash");
-
 const $body = document.querySelector("body")
-const $form = document.querySelector("form")
+const $update = document.querySelector(".update")
 const $button = document.querySelector("button")
+const $listItems = document.querySelector("tbody")
+const $list = document.querySelector(".list")
 
-let item = [{
+let inventory = [{
   name: "+5 Dexerity Vest",
   sell_in: 10,
   quality: 20,
@@ -35,7 +35,46 @@ let item = [{
   quality: 6,
   category: "Conjured"
 
-}]
+  }]
+
+showItems(inventory)
+  
+function showItems(inventory) {
+  inventory.map(item => item)
+    .forEach(item => {
+      const $rowItems = document.createElement('tr');
+      $rowItems.innerHTML = `
+        <td>${item.name}</td>
+        <td>${item.quality}</td>
+        <td>${item.sell_in}</td>
+        `
+      $listItems.append($rowItems)
+    })
+}
+
+$list.addEventListener('sumbit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target)
+  const item = {
+    name: formData.get("item"),
+    sell_in: +formData.get("sell_in"),
+    quality: +formData.get("quality"),
+    category: "none"
+  }
+  inventory = [...inventory, item]
+  showItems(item)
+  return inventory
+})
+
+$update.addEventListener('sumbit', (event) => {
+  event.preventDefault();
+  (event.target)
+  inventory = [...inventory, category]
+  updateQuality(item)
+  showItems(item)
+  return inventory
+})
+
 
 const clamp = (min, max) => (number) => Math.max(min, Math.min(number, max));
 const clampStandardQuality = (number) => clamp(0, 50)(number);
@@ -87,31 +126,3 @@ function updateQuality(item) {
   const update_strategy = strategies = strategies[item.category] || default_update_strategy;
   update_strategy(item);
 }
-
-updateQuality(item)
-
-function itemList(item) {
-  const $rowItems = document.createElement('tr');
-  $rowItems.innerHTML = `
-    <td>${item.name}</td>
-    <td>${item.quality}</td>
-    <td>${item.sell_in}</td>
-    `
-  item.map(item => {
-    const $listItems = document.querySelector('tbody');
-    $listItems.innerHTML = null;
-    item.forEach(($listItems) => {
-      $listItems.append($rowItems);
-
-    })
-  });
-
-
-  $button.addEventListener('click', (event) => {
-    event.preventDefault();
-    updateQuality(item);
-    itemList(item);
-  });
-};
-
-itemList(item)

@@ -30,13 +30,14 @@ tbody tr:nth-child(odd) {
 
 form {
   margin-top: 2px;
-  text-align: right;
+  text-align: center;
   padding: 5px;;
+
 }
 
 
 button{
-  margin-top: 2px;
+  margin-top: 15px;
   font-size: 20px;
   display:block;
   padding:10px;
@@ -48,6 +49,6 @@ button{
   text-decoration:none;
   color:hsl(0, 0%, 100%);
   background-color: hsl(212, 85%, 63%);
-  text-shadow: 25px 	hsl(0, 0%, 0%);
+  text-shadow: 2px 2px	hsl(0, 0%, 0%);
   text-align:center;
 }

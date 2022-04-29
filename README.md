@@ -1,8 +1,6 @@
 ### Note to Kyle
 
-This is super broken! 
-Need to figure out where to go from here.
-
+This is now working but is not correct. Still working on it.
 
 
 # Deployed Site 

@@ -1,4 +1,4 @@
-// Item constructor. 
+// Item constructor. DO NOT MODIFY OR THE GOBLIN WILL EAT YOU!
 export function Item(name, sell_in, quality) {
   this.name = name;
   this.sell_in = sell_in;
@@ -6,7 +6,6 @@ export function Item(name, sell_in, quality) {
 }
 
 updateQuality(items);
-
 
 export function updateQuality(items) {
   for (let index = 0; index < items.length; index++) {

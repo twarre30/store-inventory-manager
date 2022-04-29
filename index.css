@@ -28,14 +28,14 @@ tbody tr:nth-child(odd) {
   background-color: hsl(0, 0%, 75%);
 }
 
-form {
+.form {
   margin-top: 2px;
   text-align: right;
   padding: 5px;;
 }
 
 
-button{
+.form button{
   margin-top: 2px;
   font-size: 20px;
   display:block;

@@ -1,4 +1,10 @@
-let inventory = [{
+const { update } = require("lodash");
+
+const $body = document.querySelector("body")
+const $form = document.querySelector("form")
+const $button = document.querySelector("button")
+
+let item = [{
   name: "+5 Dexerity Vest",
   sell_in: 10,
   quality: 20,
@@ -29,43 +35,7 @@ let inventory = [{
   quality: 6,
   category: "Conjured"
 
-  }]
-showItems(inventory);
-
-const itemRow = (inventory) => {
-  const rowItems = document.createElement('tr');
-  rowItems.innerHTML = `
-    <td>${inventory.name}</td>
-    <td>${inventory.quality}</td>
-    <td>${inventory.sell_in}</td>
-    `
-};
-
-const itemList = (items) => {
-  const listItems = document.querySelector('tbody');
-  listItems.innerHTML = null;
-  items.forEach((element) => {
-    const rowItems = itemRow(element);
-    listItems.append(rowItems);
-  });
-};
-
-const eventButton = (items) => {
-  const updateButton = document.querySelector('update-items-button');
-  updateButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    updateQuality(items);
-    itemList(items);
-  });
-};
-
-const homePage = () => {
-  const items = inventory();
-  itemList(items);
-  eventButton(items);
-};
-
-homePage(); 
+}]
 
 const clamp = (min, max) => (number) => Math.max(min, Math.min(number, max));
 const clampStandardQuality = (number) => clamp(0, 50)(number);
@@ -108,15 +78,40 @@ function default_update_strategy(item) {
 
 const strategies = {
   "Conjured": conjured_update_strategy,
-  "Sulfuras, Hand of Ragnaros": sulfuras_update_strategy,
+  "Sulfuras": sulfuras_update_strategy,
   "Aged Brie": brie_update_strategy,
-  "Backstage passes to a TAFKAL80ETC concert": backstage_pass_update_strategy,
+  "Backstage pass": backstage_pass_update_strategy,
 }
 
-function updateQuality(items) {
-  const update_strategy = strategies = strategies[items.name] || default_update_strategy;
+function updateQuality(item) {
+  const update_strategy = strategies = strategies[item.category] || default_update_strategy;
   update_strategy(item);
 }
 
-updateQuality(items);
+updateQuality(item)
 
+function itemList(item) {
+  const $rowItems = document.createElement('tr');
+  $rowItems.innerHTML = `
+    <td>${item.name}</td>
+    <td>${item.quality}</td>
+    <td>${item.sell_in}</td>
+    `
+  item.map(item => {
+    const $listItems = document.querySelector('tbody');
+    $listItems.innerHTML = null;
+    item.forEach(($listItems) => {
+      $listItems.append($rowItems);
+
+    })
+  });
+
+
+  $button.addEventListener('click', (event) => {
+    event.preventDefault();
+    updateQuality(item);
+    itemList(item);
+  });
+};
+
+itemList(item)

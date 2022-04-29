@@ -1,6 +1,6 @@
 ### Note to Kyle
 
-This is now working but is not correct. Still working on it.
+broke but like my logic.
 
 
 # Deployed Site 

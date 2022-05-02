@@ -1,11 +1,6 @@
-### Note to Kyle
-
-broke but like my logic.
-
-
 # Deployed Site 
 
- https://twarre30.github.io/store-inventory-manager/
+Website URL: [Store Inventory] (https://twarre30.github.io/store-inventory-manager/).
 
  
 # Store Inventory Manager

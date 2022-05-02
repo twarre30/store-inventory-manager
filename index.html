@@ -5,35 +5,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css" type='text/css' media='screen'>
+  <link rel="stylesheet" href="index.css">
   <script defer src="index.js"></script>
-  <title>Store Inventory</title>
+  <title>Gilded Rose</title>
 </head>
 
 <body>
-  <h1>Store Inventory</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Item name</th>
-        <th>Quality</th>
-        <th>Sell in</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <form class="list">
-    <label for ="item">Enter Item Name</label>
-    <input type="text" name="item" id="item">
-    <label for="sell_in">Sell in Days</label>
-    <input type="number" name="sell_in" id="sell_in">
-    <label for="quality">Quality</label>
-    <input type="number" name="quality" id="quality">
-    <input type="button" value="Submit" onclick="addStoreItem();"/>
-  </form>
-  <form class="update">
-    <button type="sumbit">Update Items</button>
-  </form>
+  <header>
+    <h1>Store Inventory</h1>
+  </header>
+  <div class="title">
+    <p>Name</p>
+    <p>Sell In</p>
+    <p>Quality</p>
+  </div>
+  <main></main>
+  <div id="app">
+    <form>
+      <label for="item">Enter Item Name</label>
+      <input type="text" name="item">
+      <label for="sell_in">Sell in days</label>
+      <input type="number" name="sell_in">
+      <label for="quality">Quality</label>
+      <input type="number" name="quality">
+      <input class="button" type="submit" name="submit">
+    </form>
+    <button class="button" type="click" name="Update">Next Day</button>
+  </div>
+  
 </body>
 
 </html>

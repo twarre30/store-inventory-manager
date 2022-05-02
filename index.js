@@ -1,9 +1,6 @@
-const $body = document.querySelector("body")
-const $update = document.querySelector(".update")
-const $button = document.querySelector("button")
-const $listItems = document.querySelector("tbody")
-const $list = document.querySelector(".list")
-
+const main = document.querySelector("main")
+const $form = document.querySelector("form")
+const button = document.querySelector("button")
 let inventory = [{
   name: "+5 Dexerity Vest",
   sell_in: 10,
@@ -28,102 +25,119 @@ let inventory = [{
   name: "Backstage passes to a TAFKAL80ETC concert",
   sell_in: 15,
   quality: 20,
-  category: "Backstage pass"
+  category: "Backstage passes"
 }, {
   name: "Conjured Mana Cake",
   sell_in: 3,
   quality: 6,
   category: "Conjured"
-
 }]
-
 showItems(inventory)
 
-function showItems(inventory) {
-  inventory.map(item => item)
-    .forEach(item => {
-      const $rowItems = document.createElement('tr');
-      $rowItems.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.quality}</td>
-        <td>${item.sell_in}</td>
-        `
-      $listItems.append($rowItems)
-    })
-}
-
-function addStoreItem() {
-  const $rowItems = document.createElement('tr');
-  let $item = document.querySelector('#item')
-  let $quality = document.querySelector('#quality')
-  let $sell_in = document.querySelector('#sell_in')
-
-  $rowItems.innerHTML = `
-        <td>${$item.value}</td>
-        <td>${$quality.value}</td>
-        <td>${$sell_in.value}</td>
-        `
-  $listItems.append($rowItems)
-}
-
-
-$update.addEventListener('sumbit', (event) => {
-  event.preventDefault();
-  (event.target)
-  inventory = [...inventory, category]
-  updateQuality(item)
+addEventListener("submit", (event) => {
+  event.preventDefault()
+  const formData = new FormData(event.target)
+  const item = {
+    name: formData.get("item"),
+    sell_in: +formData.get("sell_in"),
+    quality: +formData.get("quality"),
+    category: "none"
+  }
+  inventory = [...inventory, item]
+  parseCategory(item)
+  checkQuality(item)
   showItems(item)
-  return inventory
 })
 
+button.addEventListener("click", event => {
+  event.preventDefault()
+  inventory.forEach(item => {
+    degradeQuality(item)
+    checkQuality(item)
+    updateSellIn(item)
+    showItems(item)
+  })
+})
 
-const clamp = (min, max) => (number) => Math.max(min, Math.min(number, max));
-const clampStandardQuality = (number) => clamp(0, 50)(number);
-
-function sulfuras_update_strategy(item) {
-  item.sell_in = item.sell_in = 0;
-  item.quality = item.quality = 80;
-}
-
-function conjured_update_strategy(item) {
-  item.sell_in = item.sell_in - 1;
-  const qualityReduction = item.sell_in < 0 ? 4 : 2;
-  item.quality = clampStandardQuality(item.quality - qualityReduction);
-}
-
-function brie_update_strategy(item) {
-  item.sell_in = item.sell_in - 1;
-  const qualityIncrease = item.sell_in < 0 ? 2 : 1;
-  item.quality = clampStandardQuality(item.quality + qualityIncrease);
-}
-
-function backstage_pass_update_strategy(item) {
-  const { sell_in, quality } = item;
-  let qualityUpdate;
-  if (sell_in <= 0) qualityUpdate = 0;
-  else if (sell_in > 10) qualityUpdate = quality + 1;
-  else {
-    const qualityIncrease = (sell_in <= 5) ? 3 : 2
-    qualityUpdate = quality + qualityIncrease;
+function parseCategory(item) {
+  if (item.name.includes("Aged Brie")) {
+    item.category = "Aged Brie"
+  } else if (item.name.includes("Sulfuras")) {
+    item.category = "Sulfuras"
+  } else if (item.name.includes("Backstage")) {
+    item.category = "Backstage passes"
+  } else if (item.name.includes("Conjured")) {
+    item.category = "Conjured"
+  } else {
+    item.category = "none"
   }
-  item.quality = clampStandardQuality(qualityUpdate)
-  item.sell_in = item.sell_in - 1;
+  return item
 }
 
-function default_update_strategy(item) {
-  item.sell_in = item.sell_in - 1;
-  const qualityDecrease = (item.sell_in < 0) ? 2 : 1;
-  item.quality = clampStandardQuality(item.quality - qualityDecrease)
+function showItems(item) {
+  main.innerHTML = ``
+  inventory.map(item => {
+    const $itemList = document.createElement("div")
+    $itemList.classList.add("list")
+    $itemList.innerHTML = ` 
+            <p>${item.name}</p>
+            <p>${item.sell_in}</p>
+            <p>${item.quality}</p>
+            `
+    return $itemList
+  }).forEach(($itemList) => {
+    main.append($itemList)
+
+  })
 }
 
-const strategies = {
-  "Conjured": conjured_update_strategy,
-  "Sulfuras": sulfuras_update_strategy,
-  "Aged Brie": brie_update_strategy,
-  "Backstage pass": backstage_pass_update_strategy,
+function degradeQuality(item) {
+  if (item.category === "Sulfuras") {
+    return item.quality = 80
+  } else if (item.category === "Conjured" && item.sell_in === 0) {
+    return item.quality = 0
+  } else if (item.category === "Conjured") {
+    return item.quality -= 2
+  } else if (item.category === "Backstage passes" && item.sell_in === 0) {
+    return item.quality = 0
+  } else if (item.category === "Backstage passes" && item.sell_in > 10) {
+    return item.quality = item.quality + 1
+  } else if (item.category === "Backstage passes" && item.sell_in <= 10 && item.sell_in > 5) {
+    return item.quality = item.quality + 2
+  } else if (item.category === "Backstage passes" && item.sell_in <= 5) {
+    return item.quality = item.quality + 3
+  } else if (item.category === "Aged Brie") {
+    return item.quality = item.quality + 1
+  } else if (item.sell_in <= 0) {
+    return item.quality -= 2
+  } else {
+    return item.quality -= 1
+  }
+
 }
 
-function updateQuality(item) {
-  const update_strategy = strategies = strategies[item.category] || default_update_strategy;
-  update_strategy(item);
+function updateSellIn(item) {
+  if (item.category === "Sulfuras") {
+    return item.sell_in = 0
+  } else if (item.sell_in > 0) {
+    return item.sell_in = item.sell_in - 1
+  } else {
+    return item.sell_in = 0
+  }
+}
+
+function checkQuality(item) {
+  if (item.category === "Sulfuras") {
+    return item.quality = 80
+  } else if (item.category === "Aged Brie" && item.quality < 50) {
+    return item.quality
+  } else if (item.category === "Backstage passes" && item.quality < 50) {
+    return item.quality
+  } else if (item.quality > 50) {
+    return item.quality = 50
+  } else if (item.quality <= 0) {
+    return item.quality = 0
+  } else {
+    return item.quality
+  }
 }

@@ -7,36 +7,73 @@ h1 {
   font-size: 50px;
   }
 
-table {
-  width: 50%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
-th {
-  text-align: center;
-  font-size: 25px;
+p {
+    margin: 8px;
+    font-size: 22px;
+    letter-spacing: 2px;
 }
 
-td {
-  padding: 10px;
-  font-size: 20px;
+p+p {
+    text-align: center;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: hsl(0, 0%, 75%);
+.title {
+    display: grid;
+    grid-template-columns: 550px 120px 120px;
+    margin: 8px;
+    line-height: 12px;
+    justify-content: center;
+}
+
+.title p {
+    font-size: 27px;
+    text-decoration: underline;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 550px 120px 120px;
+    margin: 8px;
+    line-height: 12px;
+    justify-content: center;
+}
+
+#app {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 form {
-  margin-top: 2px;
-  text-align: center;
-  padding: 5px;;
-
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-self: center;
+    font-size: 25px;
+    margin-top: 30px;
 }
 
+main div:nth-child(odd) {
+  background-color: hsl(0, 0%, 75%);
+}
 
-button{
+label {
+  margin: 10px
+}
+
+input {
+  font-size: 20px;
+}
+
+.button{
   margin-top: 15px;
   font-size: 20px;
   display:block;
@@ -52,3 +89,8 @@ button{
   text-shadow: 2px 2px	hsl(0, 0%, 0%);
   text-align:center;
 }
+
+
+
+
+

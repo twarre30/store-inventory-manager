@@ -24,12 +24,12 @@
   </table>
   <form class="list">
     <label for ="item">Enter Item Name</label>
-    <input type="text" name="item">
+    <input type="text" name="item" id="item">
     <label for="sell_in">Sell in Days</label>
-    <input type="number" name="sell-in">
+    <input type="number" name="sell_in" id="sell_in">
     <label for="quality">Quality</label>
-    <input type="number" name="quality">
-    <button type="submit">Submit</button>
+    <input type="number" name="quality" id="quality">
+    <input type="button" value="Submit" onclick="addStoreItem();"/>
   </form>
   <form class="update">
     <button type="sumbit">Update Items</button>

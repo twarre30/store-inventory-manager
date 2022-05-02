@@ -35,10 +35,10 @@ let inventory = [{
   quality: 6,
   category: "Conjured"
 
-  }]
+}]
 
 showItems(inventory)
-  
+
 function showItems(inventory) {
   inventory.map(item => item)
     .forEach(item => {
@@ -52,19 +52,20 @@ function showItems(inventory) {
     })
 }
 
-$list.addEventListener('sumbit', (event) => {
-  event.preventDefault();
-  const formData = new FormData(event.target)
-  const item = {
-    name: formData.get("item"),
-    sell_in: +formData.get("sell_in"),
-    quality: +formData.get("quality"),
-    category: "none"
-  }
-  inventory = [...inventory, item]
-  showItems(item)
-  return inventory
-})
+function addStoreItem() {
+  const $rowItems = document.createElement('tr');
+  let $item = document.querySelector('#item')
+  let $quality = document.querySelector('#quality')
+  let $sell_in = document.querySelector('#sell_in')
+
+  $rowItems.innerHTML = `
+        <td>${$item.value}</td>
+        <td>${$quality.value}</td>
+        <td>${$sell_in.value}</td>
+        `
+  $listItems.append($rowItems)
+}
+
 
 $update.addEventListener('sumbit', (event) => {
   event.preventDefault();

@@ -62,7 +62,7 @@ form {
 }
 
 main div:nth-child(odd) {
-  background-color: hsl(0, 0%, 75%);
+  background-color: hsl(45, 55%, 80%);
 }
 
 label {
@@ -85,7 +85,7 @@ input {
   box-sizing: border-box;
   text-decoration:none;
   color:hsl(0, 0%, 100%);
-  background-color: hsl(212, 85%, 63%);
+  background-color: hsl(45, 55%, 55%);
   text-shadow: 2px 2px	hsl(0, 0%, 0%);
   text-align:center;
 }
